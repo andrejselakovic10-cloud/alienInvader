@@ -14,29 +14,39 @@ class AlienInvaders:
         self.__settings = Settings() 
         self.__screen = self.__settings.screen
         self.__ship = Ship(self.__screen)
-    def __eventThings(self):
+
+    def __handleEvents(self):
             for event in pygame.event.get():
+
                 if event.type == pygame.QUIT:
                     sys.exit()  
+
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT:
                         self.__ship.right = True
-                    if event.key == pygame.KEYUP:
-                        self.__ship.right = False
-                if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT:
                         self.__ship.left = True
-                    if event.key == pygame.KEYUP:
+
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_RIGHT:
+                        self.__ship.right = False
+                    if event.key == pygame.K_LEFT:
                         self.__ship.left = False
-    def __screenThings(self):
+                        
+    def __drawScreen(self):
+        # BACKGROUND COLOR
         self.__screen.fill(self.__settings.bg_color)
-        self.__ship.drawShip()
+        
+        # DRAW ELEMETS
+        self.__ship.handleShip()
+
+        # REFRESH
         pygame.display.flip()
         
     def run_game(self):
         while True:
-            self.__eventThings()
-            self.__screenThings()
+            self.__handleEvents()
+            self.__drawScreen()
     
 if __name__ == "__main__":
     ai = AlienInvaders() 
