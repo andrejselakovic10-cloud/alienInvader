@@ -23,21 +23,22 @@ class AlienInvaders:
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT:
-                        self.__ship.right = True
-                        if event.type == pygame.KEYUP:
-                            self.__ship.right = False
+                        self.__ship.right = True                                
                     if event.key == pygame.K_LEFT:
-                        self.__ship.left = True
-                        if event.type == pygame.KEYUP:
-                            self.__ship.left = False
+                        self.__ship.left = True  
                     if event.key == pygame.K_UP:
-                        self.__ship.up = True
-                        if event.type == pygame.KEYUP:
-                            self.__ship.up = False
+                        self.__ship.up = True  
                     if event.key == pygame.K_DOWN:
-                        self.__ship.down = True
-                        if event.type == pygame.KEYUP:
-                            self.__ship.down = False
+                        self.__ship.down = True  
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_RIGHT:
+                        self.__ship.right = False                                
+                    if event.key == pygame.K_LEFT:
+                        self.__ship.left = False  
+                    if event.key == pygame.K_UP:
+                        self.__ship.up = False  
+                    if event.key == pygame.K_DOWN:
+                        self.__ship.down = False 
 
     def __drawScreen(self):
         # BACKGROUND COLOR
