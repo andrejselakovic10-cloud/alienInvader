@@ -21,24 +21,28 @@ class AlienInvaders:
                 if event.type == pygame.QUIT:
                     sys.exit()  
 
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RIGHT:
-                        self.__ship.right = True                                
-                    if event.key == pygame.K_LEFT:
-                        self.__ship.left = True  
-                    if event.key == pygame.K_UP:
-                        self.__ship.up = True  
-                    if event.key == pygame.K_DOWN:
-                        self.__ship.down = True  
-                if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_RIGHT:
-                        self.__ship.right = False                                
-                    if event.key == pygame.K_LEFT:
-                        self.__ship.left = False  
-                    if event.key == pygame.K_UP:
-                        self.__ship.up = False  
-                    if event.key == pygame.K_DOWN:
-                        self.__ship.down = False 
+                self._handleKeyEvents(event)
+
+    def _handleKeyEvents(self, event):
+
+        if event.type not in (pygame.KEYDOWN, pygame.KEYUP):
+            return
+
+        keyDown = False
+        if event.type == pygame.KEYDOWN:
+            keyDown = True                                
+        if event.type == pygame.KEYUP:
+            keyDown = False                                
+
+        match event.key:
+            case pygame.K_RIGHT:
+                self.__ship.movement["K_RIGHT"] = keyDown                              
+            case pygame.K_LEFT:
+                self.__ship.movement["K_LEFT"] = keyDown                              
+            case pygame.K_UP:
+                self.__ship.movement["K_UP"] = keyDown                              
+            case pygame.K_DOWN:
+                self.__ship.movement["K_DOWN"] = keyDown                              
 
     def __drawScreen(self):
         # BACKGROUND COLOR
