@@ -7,8 +7,10 @@ class Ship:
         self.__shipPresentationSetup()
         self.left = False
         self.right = False
+        self.up = False
+        self.down = False
         self.speed = 1
-
+        
     def __shipPresentationSetup(self):
         #SIZE
         scale = 0.25
@@ -27,7 +29,10 @@ class Ship:
             self.rect.x -= self.speed
         if self.right:
             self.rect.x += self.speed
-
+        if self.down:
+            self.rect.y += self.speed 
+        if self.up:
+            self.rect.y -= self.speed 
     def handleShip(self):
         self.__drawShip()
         self.__handleMovement()
